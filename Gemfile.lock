@@ -20,7 +20,12 @@ GEM
       bcrypt (>= 3.1.3)
     bond (0.5.1)
     builder (3.2.2)
-    httparty (0.13.0)
+    coffee-script (2.3.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.8.0)
+    execjs (2.2.2)
+    httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.11)
@@ -29,6 +34,9 @@ GEM
     multi_xml (0.5.5)
     pg (0.17.1)
     rack (1.5.2)
+    rack-coffee (1.0.3)
+      coffee-script
+      rack
     rack-protection (1.5.3)
       rack
     rack-test (0.6.2)
@@ -51,6 +59,14 @@ GEM
     sinatra-activerecord (2.0.3)
       activerecord (>= 3.2)
       sinatra (~> 1.0)
+    slim (2.1.0)
+      temple (~> 0.6.9)
+      tilt (>= 1.3.3, < 2.1)
+    stylus (1.0.1)
+      execjs
+      stylus-source
+    stylus-source (0.42.2)
+    temple (0.6.9)
     thread_safe (0.3.4)
     tilt (1.4.1)
     tux (0.3.0)
@@ -66,10 +82,14 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby
+  coffee-script
   httparty
   pg
+  rack-coffee
   rake
   shotgun
   sinatra
   sinatra-activerecord
+  slim
+  stylus
   tux

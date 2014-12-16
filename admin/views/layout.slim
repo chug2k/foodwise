@@ -1,0 +1,185 @@
+html
+  head
+    title Foodwise
+    meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport" /
+    meta content="yes" name="apple-mobile-web-app-capable" /
+    meta content="yes" name="apple-touch-fullscreen" /
+    meta charset="UTF-8" /
+    link href="css/flakes/all.css" rel="stylesheet" type="text/css" /
+  body
+    .flakes-frame
+      .flakes-navigation
+        a.logo href="index.html"
+          img src="img/logo.png" width="120" /
+        ul
+          li.title Category Title
+          li
+            a href="#"  Nav Item 1
+          li
+            a href="#"  Nav Item 2
+          li
+            a href="#"  Nav Item 3
+          li
+            a href="#"  Nav Item 4
+        p.foot
+          | Hello
+          b John Doe
+          br
+          a href=""  My Account
+          | \&bullet;
+          a href=""  Logout
+      .flakes-content
+        .flakes-mobile-top-bar
+          a.logo-wrap href=""
+            img height="30px" src="img/logo.png" /
+          a.navigation-expand-target href=""
+            img height="26px" src="img/site-wide/navigation-expand-target.png" /
+        .view-wrap
+          h1 Hooray, this is somewhat working.
+          p
+            | Hooray, now we have to fill this with content soon! Here are the things to do:
+          ul
+            li Throw up a login screen
+            li Persist user data to session
+            li Party
+          h2 Example Components
+          br
+          .grid-2.gutter-40
+            .span-1
+              fieldset
+                legend Personal Information
+                form
+                  ul
+                    li
+                      label First Name
+                      input type="text" /
+                    li
+                      label Last Name
+                      input type="text" /
+                    li
+                      label Email Address
+                      input required="" type="email" /
+                    li
+                      label Address
+                      textarea
+                    li
+                      input type="submit" /
+            .span-1
+              .flakes-search
+                input.search-box autofocus="" placeholder="Search" /
+                .filters
+                  label.filter-checkbox
+                    input.checkbox type="checkbox" /
+                    | Filter 1
+                  label.filter-checkbox
+                    input.checkbox type="checkbox" /
+                    | Filter 2
+              .flakes-actions-bar
+                a.action.button-gray.smaller.right href=""  Add a product
+                a.action.button-gray.smaller.right href=""  Export
+                a.action.button-gray.smaller href=""  Delete
+                a.action.button-gray.smaller href=""  Edit
+              table.flakes-table style="width:100%"
+                colgroup
+                  col span="1" style="width:20px" /
+                  col span="1" style="width:80%" /
+                thead
+                  tr
+                    td
+                      input type="checkbox" /
+                    td Product Name
+                    td SKU
+                tbody
+                  tr
+                    td
+                      input type="checkbox" /
+                    td Dolor Fusce
+                    td 654-1816
+                  tr
+                    td
+                      input type="checkbox" /
+                    td Eu Sem Pellentesque
+                    td 937-5793
+                  tr
+                    td
+                      input type="checkbox" /
+                    td Maecenas
+                    td 682-9676
+                  tr
+                    td
+                      input type="checkbox" /
+                    td Augue Porttitor
+                    td 389-1087
+                  tr
+                    td
+                      input type="checkbox" /
+                    td Dapibus
+                    td 893-7857
+                  tr
+                    td
+                      input type="checkbox" /
+                    td Eleifend
+                    td 1-783-967-8521
+                  tr
+                    td
+                      input type="checkbox" /
+                    td Tincidunt
+                    td 486-7965
+                  tr
+                    td
+                      input type="checkbox" /
+                    td Et
+                    td 462-2201
+          br
+          br
+          .grid-2.gutter-40
+            .span-1
+              fieldset.flakes-information-box
+                legend Product Specs
+                dl
+                  dt SKU
+                  dd 23-43-4343-13
+                dl
+                  dt Initial Stock Level
+                  dd $314
+                dl
+                  dt Cost Price
+                  dd $1200
+                dl
+                  dt Wholesale Price
+                  dd $1400
+                dl
+                  dt Retail Price
+                  dd $1995
+            .span-1
+              form.grid-form
+                fieldset
+                  legend Product Specs
+                  div data-row-span="1"
+                    div data-field-span="1"
+                      label SKU
+                      input type="text" /
+                  div data-row-span="1"
+                    div data-field-span="1"
+                      label Initial Stock Level
+                      input type="text" /
+                  div data-row-span="1"
+                    div data-field-span="1"
+                      label Cost Price
+                      input type="text" /
+                  div data-row-span="1"
+                    div data-field-span="1"
+                      label Wholesale Price
+                      input type="text" /
+                  div data-row-span="1"
+                    div data-field-span="1"
+                      label Retail Price
+                      input type="text" /
+
+    link href="css/flakes/gridforms.css" rel="stylesheet" type="text/css"
+    script src="js/jquery/jquery.min.js"
+    script src="js/snapjs/snap.min.js"
+    script src="js/responsive-elements/responsive-elements.js"
+    script src="js/gridforms/gridforms.js"
+    script src="js/flakes/base.js"
+    script src="js/flakes/utils.js"

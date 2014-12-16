@@ -21,6 +21,6 @@ task :create_fake_user do
       picture_url: rando['picture']['medium']
   )
 
-  puts "Created user: #{u.inspect}."
+  puts "Created user: #{u.first_name} #{u.last_name}, #{u.email}: password is #{rando['password']}."
 
 end
