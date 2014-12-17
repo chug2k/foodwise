@@ -1,5 +1,16 @@
 module Foodwise
   class Admin < Sinatra::Application
+    class ApiClient
+      include HTTParty
+      base_uri 'http://localhost:9393/api' # TODO(Charles): Fix when uploading. =)
+
+      def users
+        self.class.get('/users')
+      end
+
+    end
+
+    @@api = ApiClient.new
 
     set :sessions,
         :httponly     => true,
@@ -45,8 +56,15 @@ module Foodwise
 
     get '/products' do
       halt 401 unless logged_in?
-
       slim :products
+    end
+
+    get '/users' do
+      halt 401 unless logged_in?
+
+      puts @@api.users
+
+      slim :users
     end
 
 
