@@ -1,1 +1,14 @@
-h1 Hello World
+.grid-6.gutter-10
+  .span-6
+    fieldset
+      legend Login to FoodWise
+      form action="#{url :login}" method="POST"
+        ul
+          li
+            label Email Address
+            input type="email" placeholder="name@address.com" name="email"
+          li
+            label Password
+            input type="password" placeholder="correct horse battery staple" name="password"
+          li
+            input.button-green type="submit" value="Log in"
