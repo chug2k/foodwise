@@ -37,6 +37,8 @@ html
           a.navigation-expand-target href=""
             img height="26px" src="#{url}img/navigation-expand-target.png" /
         .view-wrap
+          - if flash[:error]
+            p.flakes-message.error #{flash[:error]}
           == yield
 
     link href="#{url}css/flakes/gridforms.css" rel="stylesheet" type="text/css"

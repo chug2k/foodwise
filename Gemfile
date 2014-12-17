@@ -12,6 +12,10 @@ gem 'stylus', require: 'stylus/tilt'
 gem 'slim'
 gem 'rack-coffee'
 
+
+# This is only for the Admin sub-interface.
+gem 'sinatra-flash'
+
 group :development do
   gem 'tux'
   gem 'shotgun'

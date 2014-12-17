@@ -7,6 +7,7 @@ module Foodwise
         :expire_after => 31557600, # 1 year
         :secret       => ENV['SESSION_SECRET'] || 'Lumpy Space Princess'
 
+    register Sinatra::Flash
 
     helpers do
       def login?
@@ -30,9 +31,13 @@ module Foodwise
     end
 
     post '/login' do
-      puts "Params are: #{params}"
-
-      # session[:username] = params[:username]
+      u = User.find_by_email(params[:email])
+      if u && u.password == params[:password]
+        session[:user_id] = u.id
+      else
+        flash[:error] = 'Your login details were incorrect.'
+        redirect url :/, 301
+      end
     end
 
 
