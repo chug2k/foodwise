@@ -1,18 +1,18 @@
 html
   head
     title Foodwise
-
     meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport" /
     meta content="yes" name="apple-mobile-web-app-capable" /
     meta content="yes" name="apple-touch-fullscreen" /
     meta charset="UTF-8" /
-    // TODO(Charles): Figure out how to remove these #{url} asset prefixes.
-    link href="#{url}css/flakes/all.css" rel="stylesheet" type="text/css" /
+    // TODO(Charles): Figure out how to remove these #{url :/} asset prefixes.
+    link href="#{url :/}css/flakes/all.css" rel="stylesheet" type="text/css" /
+    link href="#{url :/}css/app.css" rel="stylesheet" type="text/css" /
   body
     .flakes-frame
       .flakes-navigation
-        a.logo href="index.html"
-          img src="#{url}img/logo.png" width="120" /
+        a.logo href="#{url :/}"
+          img src="#{url :/}img/logo.png" width="120" /
         ul
           li.title Category Title
           li
@@ -33,18 +33,18 @@ html
       .flakes-content
         .flakes-mobile-top-bar
           a.logo-wrap href=""
-            img height="30px" src="#{url}img/logo.png" /
+            img height="30px" src="#{url :/}img/logo.png" /
           a.navigation-expand-target href=""
-            img height="26px" src="#{url}img/navigation-expand-target.png" /
+            img height="26px" src="#{url :/}img/navigation-expand-target.png" /
         .view-wrap
           - if flash[:error]
             p.flakes-message.error #{flash[:error]}
           == yield
 
-    link href="#{url}css/flakes/gridforms.css" rel="stylesheet" type="text/css"
-    script src="#{url}js/jquery/jquery.min.js"
-    script src="#{url}js/snapjs/snap.min.js"
-    script src="#{url}js/responsive-elements/responsive-elements.js"
-    script src="#{url}js/gridforms/gridforms.js"
-    script src="#{url}js/flakes/base.js"
-    script src="#{url}js/flakes/utils.js"
+    link href="#{url :/}css/flakes/gridforms.css" rel="stylesheet" type="text/css"
+    script src="#{url :/}js/jquery/jquery.min.js"
+    script src="#{url :/}js/snapjs/snap.min.js"
+    script src="#{url :/}js/responsive-elements/responsive-elements.js"
+    script src="#{url :/}js/gridforms/gridforms.js"
+    script src="#{url :/}js/flakes/base.js"
+    script src="#{url :/}js/flakes/utils.js"

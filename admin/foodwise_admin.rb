@@ -10,12 +10,8 @@ module Foodwise
     register Sinatra::Flash
 
     helpers do
-      def login?
-        if session[:user_id].nil?
-          return false
-        else
-          return true
-        end
+      def logged_in?
+        session[:user_id].present?
       end
 
 
@@ -34,11 +30,25 @@ module Foodwise
       u = User.find_by_email(params[:email])
       if u && u.password == params[:password]
         session[:user_id] = u.id
+        redirect url :products
       else
         flash[:error] = 'Your login details were incorrect.'
         redirect url :/, 301
       end
     end
+
+    post '/logout' do
+      session[:user_id] = nil
+      flash[:error] = 'You have been logged out.'
+      redirect url :/, 301
+    end
+
+    get '/products' do
+      halt 401 unless logged_in?
+
+      slim :products
+    end
+
 
 
     # TODO(Charles): If Admin ever feels slow, consider serving assets from Sprockets.
@@ -50,10 +60,9 @@ module Foodwise
     end
 
     get '/css/*.css' do
+      content_type 'text/css'
       filename = params[:splat].first
-      if File.exist?("../public/css/#{filename}.styl")
-        stylus "../public/css/#{filename}".to_sym
-      end
+      stylus "../public/css/#{filename}".to_sym
     end
 
   end
