@@ -3,7 +3,7 @@ require 'bundler'
 
 Bundler.require
 
-require './models/user'
+Dir['./models/*.rb'].each {|f| require f }
 require './api/foodwise_api.rb'
 require './admin/foodwise_admin.rb'
 

@@ -28,6 +28,17 @@ module Foodwise
       end
     end
 
+
+
+    get '/ingredients' do
+      content_type :json
+
+      Ingredient.all.to_json
+    end
+
+
+    ### Authentication ###
+
     post '/login' do
       content_type :json
       puts "Logging in user: #{@request_payload[:email]}"

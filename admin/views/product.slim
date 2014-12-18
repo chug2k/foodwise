@@ -3,38 +3,97 @@
     fieldset
       legend New Product
       div data-row-span="1"
-        div data-field-span="1" style=("height: 59px;")
+        div data-field-span="1"
           label Product Name
           input autofocus="" type="text" /
       div data-row-span="2"
         div data-field-span="1"
           label Category
-          select.chosen-select data-placeholder="Choose categories..." multiple="yes"
+          select.chosen-select data-placeholder="Choose categories..." multiple="true"
             - 10.times do |n|
               option Category #{n}
         div data-field-span="1"
           label Ingredients
-          select.chosen-select data-placeholder="Choose ingredients..." multiple="yes"
+          select.chosen-select data-placeholder="Choose ingredients..." multiple="true"
             - 10.times do |n|
               option Ingredient #{n}
 
       div data-row-span="1"
-        div data-field-span="1" style=("height: 84px;")
+        div data-field-span="1"
           label Product Description
           textarea
       div data-row-span="5"
-        div data-field-span="1" style=("height: 59px;")
-          label SKU
-          input type="text" /
-        div data-field-span="1" style=("height: 59px;")
-          label Initial Stock Level
-          input type="text" /
-        div data-field-span="1" style=("height: 59px;")
-          label Cost Price
-          input type="text" /
-        div data-field-span="1" style=("height: 59px;")
-          label Wholesale Price
-          input type="text" /
-        div data-field-span="1" style=("height: 59px;")
-          label Retail Price
-          input type="text" /
+        div data-field-span="1"
+          label Grams total
+          input type="number" /
+        div data-field-span="1"
+          label Serving size
+          input type="number" /
+        div data-field-span="1"
+          label Grams per serving
+          input type="number" /
+        div data-field-span="1"
+          label Calories
+          input type="number" /
+        div data-field-span="1"
+          label Calories from fat
+          input type="number" /
+
+      div data-row-span="5"
+        div data-field-span="1"
+          label Total fat
+          input type="number" /
+        div data-field-span="1"
+          label Saturated fat
+          input type="number" /
+        div data-field-span="1"
+          label Trans fat
+          input type="number" /
+        div data-field-span="1"
+          label Cholesterol
+          input type="number" /
+        div data-field-span="1"
+          label Sodium
+          input type="number" /
+
+      div data-row-span="5"
+        div data-field-span="1"
+          label Total carbs
+          input type="number" /
+        div data-field-span="1"
+          label Dietary fiber
+          input type="number" /
+        div data-field-span="1"
+          label Sugar
+          input type="number" /
+        div data-field-span="1"
+          label Protein
+          input type="number" /
+        div data-field-span="1"
+          label Vitamin A
+          input type="number" /
+
+      div data-row-span="5"
+        div data-field-span="1"
+          label Vitamin C
+          input type="number" /
+        div data-field-span="1"
+          label Calcium
+          input type="number" /
+        div data-field-span="1"
+          label Vitamin D
+          input type="number" /
+        div data-field-span="1"
+          label Phosphorous
+          input type="number" /
+        div data-field-span="1"
+
+      div data-row-span="2"
+        div data-field-span="1"
+          label Kosher
+          input type="checkbox" /
+        div data-field-span="1"
+          label Gluten Free
+          input type="checkbox" /
+
+
