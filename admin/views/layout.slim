@@ -43,9 +43,15 @@ html
           == yield
 
     link href="#{url :/}css/flakes/gridforms.css" rel="stylesheet" type="text/css"
+    link href="#{url :/}css/chosen/chosen.min.css" rel="stylesheet" type="text/css"
     script src="#{url :/}js/jquery/jquery.min.js"
     script src="#{url :/}js/snapjs/snap.min.js"
     script src="#{url :/}js/responsive-elements/responsive-elements.js"
     script src="#{url :/}js/gridforms/gridforms.js"
     script src="#{url :/}js/flakes/base.js"
-    script src="#{url :/}js/flakes/utils.js"
+    script src="#{url :/}js/chosen/chosen.jquery.min.js"
+
+    javascript:
+      $(document).on('ready', function() {
+        $('.chosen-select').chosen({width: '100%'});
+      });

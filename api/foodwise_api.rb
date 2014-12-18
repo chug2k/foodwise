@@ -21,8 +21,6 @@ module Foodwise
       content_type :json
       halt 401 unless is_admin?
 
-      puts "Params#: #{params[:query]}"
-
       if params[:query]
         User.where('first_name ILIKE :query OR last_name ILIKE :query OR email ILIKE :query', query: "%#{params[:query]}%").to_json
       else

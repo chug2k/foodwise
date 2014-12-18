@@ -61,18 +61,19 @@ $(function() {
 
             var fieldsRows = this.el.fieldsRows;
             var fieldsContainers = this.el.fieldsContainers;
+          // XXX(Charles): Why is this happen
 
-            // Make sure that the fields aren't stacked
-            if (!this.areFieldsStacked()) {
-                fieldsRows.each(function() {
-                    // Get the height of the row (thus the tallest element's height)
-                    var fieldRow = $(this);
-                    var rowHeight = fieldRow.css('height');
-
-                    // Set the height for each field in the row...
-                    fieldRow.find(fieldsContainers).css('height', rowHeight);
-                });
-            }
+//            // Make sure that the fields aren't stacked
+//            if (!this.areFieldsStacked()) {
+//                fieldsRows.each(function() {
+//                    // Get the height of the row (thus the tallest element's height)
+//                    var fieldRow = $(this);
+//                    var rowHeight = fieldRow.css('height');
+//
+//                    // Set the height for each field in the row...
+//                    fieldRow.find(fieldsContainers).css('height', rowHeight);
+//                });
+//            }
         },
         areFieldsStacked: function() {
             // Get the first row 

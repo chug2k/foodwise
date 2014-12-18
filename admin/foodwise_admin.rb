@@ -63,6 +63,12 @@ module Foodwise
       slim :products
     end
 
+    get '/product/new' do
+      halt 401 unless logged_in?
+      @product = {}
+      slim :product
+    end
+
     get '/users' do
       halt 401 unless logged_in?
       res = @@api.users session[:user_token], params[:query]
