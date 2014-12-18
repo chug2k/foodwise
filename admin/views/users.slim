@@ -1,30 +1,37 @@
-h1 Users
-#users-search
-  .flakes-search
-    input.search-box.users autofocus="" placeholder=("Search Users") /
-  .flakes-actions-bar
-    a.action.button-gray.smaller.right href=""  Add a user
-    a.action.button-gray.smaller.right href=""  Export
-    a.action.button-gray.smaller href=""  Delete
-    a.action.button-gray.smaller href=""  Edit
+.users-wrapper
+  h1 Users
+  #users-search
+    form action="#{url :users}" method="GET"
+      .flakes-search
+        input.search-box.users autofocus="" placeholder=("Search Users") name="query"
+      .flakes-actions-bar
+        input.right.button-gray.smaller type="submit" value="Search"
+
   table.flakes-table
     thead
       tr
+        td.edit-button
         td.profile-thumbnail
         td.first-name First Name
         td.last-name Last Name
         td.email Email
+        td.is_admin Admin
     tbody.list
-      tr
-        td.profile-thumbnail
-        td.first-name #{@first_name}
-        td.first-name
-        td.email dolor@fusce.com
+      - @users.each do |user|
+        tr
+          td.edit-button
+            i.fa.fa-edit
+          td.profile-thumbnail
+            img src="#{user[:picture_url]}"
+          td.first-name #{user[:first_name]}
+          td.last0name #{user[:last_name]}
+          td.email #{user[:email]}
+          td.is_admin #{user[:is_admin]}
 
-  .flakes-pagination.right
-    a href=""  Prev
-    | &nbsp;
-    input value="1"
-    i of
-    | &nbsp; 3
-    a href=""  Next
+  /.flakes-pagination.right
+  /  a href=""  Prev
+  /  | &nbsp;
+  /  input value="1"
+  /  i of
+  /  | &nbsp; 3
+  /  a href=""  Next

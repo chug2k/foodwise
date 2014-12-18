@@ -4,7 +4,8 @@ require 'bundler'
 
 Bundler.require
 
-require './foodwise_api.rb'
+require './api/foodwise_api.rb'
+require './models/user.rb'
 require 'sinatra/activerecord/rake'
 
 
@@ -13,7 +14,7 @@ task :create_fake_user do
   rando = JSON.parse(response.body)['results'].first['user']
 
 
-  u = User.create(
+  u = Foodwise::User.create(
       first_name: rando['name']['first'].capitalize,
       last_name: rando['name']['last'].capitalize,
       email: rando['email'],

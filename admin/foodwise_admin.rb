@@ -2,10 +2,15 @@ module Foodwise
   class Admin < Sinatra::Application
     class ApiClient
       include HTTParty
+      headers 'Content-Type' => 'application/json'
       base_uri 'http://localhost:9393/api' # TODO(Charles): Fix when uploading. =)
 
-      def users
-        self.class.get('/users')
+      def users(token, query)
+        self.class.get('/users', query: {query: query}, headers: {'Foodwise-Token' => token})
+      end
+
+      def login(credentials)
+        self.class.post('/login', body: credentials.to_json, headers: {'Content-Type' => 'application/json'})
       end
 
     end
@@ -22,34 +27,33 @@ module Foodwise
 
     helpers do
       def logged_in?
-        session[:user_id].present?
+        session[:user_token] != nil
       end
-
-
-      def current_user
-        return session[:user_id]
-      end
-
     end
 
+    def current_user_token
+      session[:user_token]
+    end
 
     get '/' do
       slim :login
     end
 
     post '/login' do
-      u = User.find_by_email(params[:email])
-      if u && u.password == params[:password]
-        session[:user_id] = u.id
-        redirect url :products
-      else
+      res = @@api.login(params)
+      if res.code == 401
         flash[:error] = 'Your login details were incorrect.'
         redirect url :/, 301
+      else
+        res = res.parsed_response
+        halt 500 unless res.has_key? 'token'
+        session[:user_token] = res['token']
+        redirect url :users
       end
     end
 
     post '/logout' do
-      session[:user_id] = nil
+      session[:user_token] = nil
       flash[:error] = 'You have been logged out.'
       redirect url :/, 301
     end
@@ -61,9 +65,8 @@ module Foodwise
 
     get '/users' do
       halt 401 unless logged_in?
-
-      puts @@api.users
-
+      res = @@api.users session[:user_token], params[:query]
+      @users = res.parsed_response.each {|x| x.symbolize_keys!}
       slim :users
     end
 
