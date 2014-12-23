@@ -5,7 +5,7 @@
       div data-row-span="1"
         div data-field-span="1"
           label Product Name
-          input autofocus="" type="text" /
+          input autofocus="" type="text" value="#{@product.name}"
       div data-row-span="2"
         div data-field-span="1"
           label Category
@@ -22,78 +22,85 @@
         div data-field-span="1"
           label Product Description
           textarea
+            = @product.description
       div data-row-span="5"
         div data-field-span="1"
           label Grams total
-          input type="number" /
+          input type="number" value="#{@product.grams_total}"
         div data-field-span="1"
           label Serving size
-          input type="number" /
+          input type="number" value="#{@product.serving_size}"
         div data-field-span="1"
           label Grams per serving
-          input type="number" /
+          input type="number" value="#{@product.grams_per_serving}"
         div data-field-span="1"
           label Calories
-          input type="number" /
+          input type="number"
         div data-field-span="1"
           label Calories from fat
-          input type="number" /
+          input type="number" value="#{@product.calories_from_fat}"
 
       div data-row-span="5"
         div data-field-span="1"
           label Total fat
-          input type="number" /
+          input type="number" value="#{@product.total_fat}"
         div data-field-span="1"
           label Saturated fat
-          input type="number" /
+          input type="number" value="#{@product.saturated_fat}"
         div data-field-span="1"
           label Trans fat
-          input type="number" /
+          input type="number" value="#{@product.trans_fat}"
         div data-field-span="1"
           label Cholesterol
-          input type="number" /
+          input type="number" value="#{@product.cholesterol}"
         div data-field-span="1"
           label Sodium
-          input type="number" /
+          input type="number" value="#{@product.sodium}"
 
       div data-row-span="5"
         div data-field-span="1"
-          label Total carbs
-          input type="number" /
+          label Total carb
+          input type="number" value="#{@product.total_carb}"
         div data-field-span="1"
           label Dietary fiber
-          input type="number" /
+          input type="number" value="#{@product.dietary_fiber}"
         div data-field-span="1"
           label Sugar
-          input type="number" /
+          input type="number" value="#{@product.sugar}"
         div data-field-span="1"
           label Protein
-          input type="number" /
+          input type="number" value="#{@product.protein}"
         div data-field-span="1"
           label Vitamin A
-          input type="number" /
+          input type="number" value="#{@product.vitamin_a}"
 
       div data-row-span="5"
         div data-field-span="1"
           label Vitamin C
-          input type="number" /
+          input type="number" value="#{@product.vitamin_c}"
         div data-field-span="1"
           label Calcium
-          input type="number" /
+          input type="number" value="#{@product.calcium}"
         div data-field-span="1"
           label Vitamin D
-          input type="number" /
+          input type="number" value="#{@product.vitamin_d}"
         div data-field-span="1"
           label Phosphorous
-          input type="number" /
+          input type="number" value="#{@product.phosphorus}"
         div data-field-span="1"
 
       div data-row-span="2"
         div data-field-span="1"
           label Kosher
-          input type="checkbox" /
+          - if @product.kosher
+            input type="checkbox" checked="true"
+          - else
+            input type="checkbox"
+
         div data-field-span="1"
           label Gluten Free
-          input type="checkbox" /
-
+          - if @product.gluten_free
+            input type="checkbox" checked="true"
+          - else
+            input type="checkbox"
 

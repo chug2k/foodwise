@@ -1,4 +1,5 @@
 module Foodwise
+  require 'ostruct'
   class Admin < Sinatra::Application
     class ApiClient
       include HTTParty
@@ -65,7 +66,7 @@ module Foodwise
 
     get '/product/new' do
       halt 401 unless logged_in?
-      @product = {}
+      @product = OpenStruct.new
       slim :product
     end
 
