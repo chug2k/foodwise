@@ -4,7 +4,7 @@ module Foodwise
     class ApiClient
       include HTTParty
       headers 'Content-Type' => 'application/json'
-      base_uri 'http://localhost:9393/api' # TODO(Charles): Fix when uploading. =)
+      base_uri ENV['FOODWISE_API_URL'] || 'http://localhost:9393/api'
 
       def users(token, query)
         self.class.get('/users', query: {query: query}, headers: {'Foodwise-Token' => token})
