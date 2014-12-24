@@ -16,7 +16,12 @@ gem 'rack-coffee'
 # This is only for the Admin sub-interface.
 gem 'sinatra-flash'
 
+# Debug, but I want to run on Heroku.
+gem 'tux'
+
+# Use thin as the webserver.
+gem 'thin'
+
 group :development do
-  gem 'tux'
   gem 'shotgun'
 end
