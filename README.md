@@ -26,3 +26,11 @@ You can verify that the API is alive by going to `/api`. You should be greeted w
     Hello World! It is currently 2014-12-29 07:46:34 +0000
     
 To check out the admin frontend, go to `/admin`. Remember you probably want to login with a user who has `is_admin` set to `true`.
+
+## Deployment
+
+The app is set up to run on Heroku, using the unicorn webserver. It currently runs on `foodwise.herokuapp.com`. Environment variables should be correctly set; no special magic required here.
+
+## More about the API
+
+Head to foodwise.apiary.io for more details!
