@@ -3,10 +3,10 @@
   #products-search
     form action="#{url :products}" method="GET"
       .flakes-search
-        input.search-box.search autofocus="" placeholder=("Search Products") /
+        input.search-box.search autofocus="" placeholder=("Search Products") name="query"
       .flakes-actions-bar
         input.right.button-gray.smaller type="submit" value="Search"
-        a.action.button-gray.smaller.right href=""  Add a product
+        a.action.button-gray.smaller.right href="#{url 'product/new'}"  Add a product
 
     table.flakes-table
       thead
