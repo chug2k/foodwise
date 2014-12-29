@@ -1,158 +1,25 @@
-h1 Inventory Search
-#inventory-search
-  .flakes-search
-    input.search-box.search autofocus="" placeholder=("Search Products") /
-  .flakes-actions-bar
-    a.action.button-gray.smaller.right href=""  Add a product
-    a.action.button-gray.smaller.right href=""  Export
-    a.action.button-gray.smaller href=""  Delete
-    a.action.button-gray.smaller href=""  Edit
-  table.flakes-table
-    colgroup
-      col span="1" style="width:20px" /
-      col span="1" style="width:40%" /
-    thead
-      tr
-        td
-          input type="checkbox" /
-        td.company Product Name
-        td.contact SKU
-        td.city City
-        td.name Supplier
-    tbody.list
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Dolor Fusce
-        td.contact 654-1816
-        td.city Eritrea
-        td.name Daquan Parks
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Eu Sem Pellentesque
-        td.contact 937-5793
-        td.city Macao
-        td.name Mechelle Kirkland
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Maecenas
-        td.contact 682-9676
-        td.city Bahamas
-        td.name Warren Morales
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Augue Porttitor
-        td.contact 389-1087
-        td.city Luxembourg
-        td.name Steven Madden
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Dapibus
-        td.contact 893-7857
-        td.city Fiji
-        td.name Sierra Morton
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Eleifend
-        td.contact 1-783-967-8521
-        td.city Martinique
-        td.name Maia Ayers
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Tincidunt
-        td.contact 486-7965
-        td.city Malawi
-        td.name Ruth Lee
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Et
-        td.contact 462-2201
-        td.city Malawi
-        td.name Noel Langley
+.products-wrapper
+  h1 Products
+  #products-search
+    form action="#{url :products}" method="GET"
+      .flakes-search
+        input.search-box.search autofocus="" placeholder=("Search Products") /
+      .flakes-actions-bar
+        input.right.button-gray.smaller type="submit" value="Search"
+        a.action.button-gray.smaller.right href=""  Add a product
 
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Dolor Fusce
-        td.contact 654-1816
-        td.city Eritrea
-        td.name Daquan Parks
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Eu Sem Pellentesque
-        td.contact 937-5793
-        td.city Macao
-        td.name Mechelle Kirkland
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Maecenas
-        td.contact 682-9676
-        td.city Bahamas
-        td.name Warren Morales
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Augue Porttitor
-        td.contact 389-1087
-        td.city Luxembourg
-        td.name Steven Madden
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Dapibus
-        td.contact 893-7857
-        td.city Fiji
-        td.name Sierra Morton
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Eleifend
-        td.contact 1-783-967-8521
-        td.city Martinique
-        td.name Maia Ayers
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Tincidunt
-        td.contact 486-7965
-        td.city Malawi
-        td.name Ruth Lee
-      tr
-        td
-          input type="checkbox" /
-        td.company
-          a href="#"  Et
-        td.contact 462-2201
-        td.city Malawi
-        td.name Noel Langley
-  .flakes-pagination.right
-    a href=""  Prev
-    | &nbsp;
-    input value="1"
-    i of
-    | &nbsp; 3
-    a href=""  Next
+    table.flakes-table
+      thead
+        tr
+          td.edit-button
+          td.first-name Product Name
+          td.email Categories
+          td.blank
+      tbody.list
+        - @products.each do |product|
+          tr
+            td.edit-button
+              a href="#{url('product/' + product.id.to_s)}"
+                i.fa.fa-edit
+            td.name #{product.name}
+            td.categories #{product.categories}

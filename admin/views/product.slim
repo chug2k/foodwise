@@ -1,7 +1,7 @@
 .new-product-wrapper
-  form.grid-form action="#{url 'product/new'}" method="POST"
+  form.grid-form action="#{url :product}" method="POST"
     fieldset
-      legend New Product
+      legend Product
       div data-row-span="1"
         div data-field-span="1"
           label Product Name
@@ -18,11 +18,6 @@
             - 10.times do |n|
               option Ingredient #{n}
 
-      div data-row-span="1"
-        div data-field-span="1"
-          label Product Description
-          textarea name="description"
-            = @product.description
       div data-row-span="5"
         div data-field-span="1"
           label Grams total

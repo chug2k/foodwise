@@ -19,6 +19,7 @@ gem 'sinatra-contrib'
 
 # Used for debugging, but also in production environments.
 gem 'tux'
+gem 'faker'
 
 group :development do
   gem 'shotgun'

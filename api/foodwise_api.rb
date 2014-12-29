@@ -27,6 +27,36 @@ module Foodwise
       end
     end
 
+    post '/product' do
+      content_type :json
+      halt 401 unless is_admin?
+
+      @product = Product.new(@request_payload)
+      if @product.save
+        @product.to_json
+      else
+        halt 500
+      end
+    end
+
+    get '/product' do
+      content_type :json
+
+      Product.find(params[:id]).to_json
+    end
+
+
+
+    get '/products' do
+      content_type :json
+      halt 401 unless is_admin?
+
+      if params[:query]
+        Product.where('name ILIKE :query', query: "%#{params[:query]}%").to_json
+      else
+        Product.all.to_json
+      end
+    end
 
 
     get '/ingredients' do

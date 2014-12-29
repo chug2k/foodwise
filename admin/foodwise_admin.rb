@@ -15,6 +15,18 @@ module Foodwise
         self.class.get('/users', query: {query: query}, headers: {'Foodwise-Token' => token})
       end
 
+      def products(token, query)
+        self.class.get('/products', query: {query: query}, headers: {'Foodwise-Token' => token})
+      end
+
+      def product(token, id)
+        self.class.get('/product', query: {id: id}, headers: {'Foodwise-Token' => token})
+      end
+
+      def create_product(token, product_params)
+        self.class.post('/product', body: product_params.to_json, headers: {'Foodwise-Token' => token})
+      end
+
       def login(credentials)
         self.class.post('/login', body: credentials.to_json, headers: {'Content-Type' => 'application/json'})
       end
@@ -71,6 +83,9 @@ module Foodwise
 
     get '/products' do
       halt 401 unless logged_in?
+      res = @@api.products session[:user_token], params[:query]
+      @products = res.parsed_response.collect {|x| OpenStruct.new(x)}
+
       slim :products
     end
 
@@ -80,7 +95,18 @@ module Foodwise
       slim :product
     end
 
-    post '/product/new' do
+    get '/product/:id' do |n|
+      halt 401 unless logged_in?
+      res = @@api.product session[:user_token], params[:id]
+      p res
+      @product = OpenStruct.new(res.parsed_response)
+      slim :product
+    end
+
+    post '/product' do
+      halt 401 unless logged_in?
+      res = @@api.create_product session[:user_token], params
+      halt 500 unless res.code == 200
       flash[:info] = "#{params[:name]} successfully created/updated!"
       redirect url '/product/new', 301
     end
