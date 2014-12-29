@@ -53,9 +53,6 @@ module Foodwise
       session[:user_token]
     end
 
-    def current_user
-
-    end
 
     get '/' do
       slim :login
