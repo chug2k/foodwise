@@ -98,7 +98,6 @@ module Foodwise
     get '/product/:id' do |n|
       halt 401 unless logged_in?
       res = @@api.product session[:user_token], params[:id]
-      p res
       @product = OpenStruct.new(res.parsed_response)
       slim :product
     end
