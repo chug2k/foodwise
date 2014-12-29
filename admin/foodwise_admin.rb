@@ -34,12 +34,8 @@ module Foodwise
     end
 
     @@api = ApiClient.new
-
-    set :sessions,
-        :httponly     => true,
-        :secure       => production?,
-        :expire_after => 31557600, # 1 year
-        :secret       => ENV['SESSION_SECRET'] || 'Lumpy Space Princess'
+    enable :sessions
+    set :session_secret, ENV['SESSION_KEY'] || 'Can of Beans'
 
     register Sinatra::Flash
 
@@ -65,7 +61,7 @@ module Foodwise
         redirect url :/, 301
       else
         res = res.parsed_response
-
+        puts "my token is #{res['token']}"
         halt 500 unless res.has_key? 'token'
         session[:user_token] = res['token']
         redirect url :users
@@ -108,6 +104,8 @@ module Foodwise
     end
 
     get '/users' do
+      puts "Am I logged in? #{logged_in?}"
+      puts "I think I am: #{session[:user_token]}"
       halt 401 unless logged_in?
       res = @@api.users session[:user_token], params[:query]
       @users = res.parsed_response.each {|x| x.symbolize_keys!}
