@@ -4,8 +4,8 @@ gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-activerecord'
 gem 'pg'
 gem 'rake'
-gem 'httparty' # Used to generate some fake users.
-gem 'bcrypt-ruby', require: 'bcrypt'
+gem 'httparty'
+gem 'bcrypt', require: 'bcrypt'
 
 gem 'coffee-script'
 gem 'stylus', require: 'stylus/tilt'
@@ -15,12 +15,10 @@ gem 'rack-coffee'
 
 # This is only for the Admin sub-interface.
 gem 'sinatra-flash'
+gem 'sinatra-contrib'
 
-# Debug, but I want to run on Heroku.
+# Used for debugging, but also in production environments.
 gem 'tux'
-
-# Use thin as the webserver.
-gem 'thin'
 
 group :development do
   gem 'shotgun'

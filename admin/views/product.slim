@@ -1,106 +1,108 @@
 .new-product-wrapper
-  form.grid-form
+  form.grid-form action="#{url 'product/new'}" method="POST"
     fieldset
       legend New Product
       div data-row-span="1"
         div data-field-span="1"
           label Product Name
-          input autofocus="" type="text" value="#{@product.name}"
+          input autofocus="" type="text" value="#{@product.name}" name="name"
       div data-row-span="2"
         div data-field-span="1"
           label Category
-          select.chosen-select data-placeholder="Choose categories..." multiple="true"
+          select.chosen-select data-placeholder="Choose categories..." multiple="true" name="categories"
             - 10.times do |n|
               option Category #{n}
         div data-field-span="1"
           label Ingredients
-          select.chosen-select data-placeholder="Choose ingredients..." multiple="true"
+          select.chosen-select data-placeholder="Choose ingredients..." multiple="true" name="ingredients"
             - 10.times do |n|
               option Ingredient #{n}
 
       div data-row-span="1"
         div data-field-span="1"
           label Product Description
-          textarea
+          textarea name="description"
             = @product.description
       div data-row-span="5"
         div data-field-span="1"
           label Grams total
-          input type="number" value="#{@product.grams_total}"
+          input type="number" value="#{@product.grams_total}" name="grams_total"
         div data-field-span="1"
           label Serving size
-          input type="number" value="#{@product.serving_size}"
+          input type="number" value="#{@product.serving_size}" name="serving_size"
         div data-field-span="1"
           label Grams per serving
-          input type="number" value="#{@product.grams_per_serving}"
+          input type="number" value="#{@product.grams_per_serving}" name="grams_per_serving"
         div data-field-span="1"
           label Calories
-          input type="number"
+          input type="number" name="calories"
         div data-field-span="1"
           label Calories from fat
-          input type="number" value="#{@product.calories_from_fat}"
+          input type="number" value="#{@product.calories_from_fat}" name="calories_from_fat"
 
       div data-row-span="5"
         div data-field-span="1"
           label Total fat
-          input type="number" value="#{@product.total_fat}"
+          input type="number" value="#{@product.total_fat}" name="total_fat"
         div data-field-span="1"
           label Saturated fat
-          input type="number" value="#{@product.saturated_fat}"
+          input type="number" value="#{@product.saturated_fat}" name="saturated_fat"
         div data-field-span="1"
           label Trans fat
-          input type="number" value="#{@product.trans_fat}"
+          input type="number" value="#{@product.trans_fat}" name="trans_fat"
         div data-field-span="1"
           label Cholesterol
-          input type="number" value="#{@product.cholesterol}"
+          input type="number" value="#{@product.cholesterol}" name="cholesterol"
         div data-field-span="1"
           label Sodium
-          input type="number" value="#{@product.sodium}"
+          input type="number" value="#{@product.sodium}" name="sodium"
 
       div data-row-span="5"
         div data-field-span="1"
           label Total carb
-          input type="number" value="#{@product.total_carb}"
+          input type="number" value="#{@product.total_carb}" name="total_carb"
         div data-field-span="1"
           label Dietary fiber
-          input type="number" value="#{@product.dietary_fiber}"
+          input type="number" value="#{@product.dietary_fiber}" name="dietary_fiber"
         div data-field-span="1"
           label Sugar
-          input type="number" value="#{@product.sugar}"
+          input type="number" value="#{@product.sugar}" name="sugar"
         div data-field-span="1"
           label Protein
-          input type="number" value="#{@product.protein}"
+          input type="number" value="#{@product.protein}" name="protein"
         div data-field-span="1"
           label Vitamin A
-          input type="number" value="#{@product.vitamin_a}"
+          input type="number" value="#{@product.vitamin_a}" name="vitamin_a"
 
       div data-row-span="5"
         div data-field-span="1"
           label Vitamin C
-          input type="number" value="#{@product.vitamin_c}"
+          input type="number" value="#{@product.vitamin_c}" name="vitamin_c"
         div data-field-span="1"
           label Calcium
-          input type="number" value="#{@product.calcium}"
+          input type="number" value="#{@product.calcium}" name="calcium"
         div data-field-span="1"
           label Vitamin D
-          input type="number" value="#{@product.vitamin_d}"
+          input type="number" value="#{@product.vitamin_d}" name="vitamin_d"
         div data-field-span="1"
           label Phosphorous
-          input type="number" value="#{@product.phosphorus}"
+          input type="number" value="#{@product.phosphorus}" name="phosphorus"
         div data-field-span="1"
 
       div data-row-span="2"
         div data-field-span="1"
           label Kosher
           - if @product.kosher
-            input type="checkbox" checked="true"
+            input type="checkbox" checked="true" name="kosher"
           - else
-            input type="checkbox"
+            input type="checkbox" name="kosher"
 
         div data-field-span="1"
           label Gluten Free
           - if @product.gluten_free
-            input type="checkbox" checked="true"
+            input type="checkbox" checked="true" name="gluten_free"
           - else
-            input type="checkbox"
+            input type="checkbox" name="gluten_free"
 
+      br
+      input.button-green type="submit" value="Update Product"

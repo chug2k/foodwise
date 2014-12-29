@@ -1,7 +1,6 @@
 module Foodwise
   class Api < Sinatra::Application
     register Sinatra::ActiveRecordExtension
-    use Rack::Deflater
 
     before do
       # Parse any JSON parameters.

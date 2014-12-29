@@ -1,6 +1,11 @@
 module Foodwise
   require 'ostruct'
   class Admin < Sinatra::Application
+    configure :development do
+      register Sinatra::Reloader
+    end
+    use Rack::Deflater
+
     class ApiClient
       include HTTParty
       headers 'Content-Type' => 'application/json'
@@ -36,6 +41,10 @@ module Foodwise
       session[:user_token]
     end
 
+    def current_user
+
+    end
+
     get '/' do
       slim :login
     end
@@ -47,6 +56,7 @@ module Foodwise
         redirect url :/, 301
       else
         res = res.parsed_response
+
         halt 500 unless res.has_key? 'token'
         session[:user_token] = res['token']
         redirect url :users
@@ -68,6 +78,11 @@ module Foodwise
       halt 401 unless logged_in?
       @product = OpenStruct.new
       slim :product
+    end
+
+    post '/product/new' do
+      flash[:info] = "#{params[:name]} successfully created/updated!"
+      redirect url '/product/new', 301
     end
 
     get '/users' do
