@@ -1,7 +1,7 @@
 Foodwise
 ========
 
-Foodwise is a cool app. There are more details to come.
+![Awesome Logo](/admin/public/img/logo.png?raw=true)
 
 Currently running as two modular Sinatra apps running off of Rack - one for the API and one for the Admin Frontend. 
 
