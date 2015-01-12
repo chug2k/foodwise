@@ -7,8 +7,11 @@ html
     meta charset="UTF-8" /
     // TODO(Charles): Figure out how to remove these #{url :/} asset prefixes.
     link href="#{url :/}css/flakes/all.css" rel="stylesheet" type="text/css" /
+    link href="#{url :/}css/nutritionix/nutritionLabel.css" rel="stylesheet" type="text/css" /
     link href="#{url :/}css/app.css" rel="stylesheet" type="text/css" /
     link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"
+    script src="#{url :/}js/jquery/jquery.min.js"
+
   body
     .flakes-frame
       .flakes-navigation
@@ -39,12 +42,12 @@ html
 
     link href="#{url :/}css/flakes/gridforms.css" rel="stylesheet" type="text/css"
     link href="#{url :/}css/chosen/chosen.min.css" rel="stylesheet" type="text/css"
-    script src="#{url :/}js/jquery/jquery.min.js"
     script src="#{url :/}js/snapjs/snap.min.js"
     script src="#{url :/}js/responsive-elements/responsive-elements.js"
     script src="#{url :/}js/gridforms/gridforms.js"
     script src="#{url :/}js/flakes/base.js"
     script src="#{url :/}js/chosen/chosen.jquery.min.js"
+    script src="#{url :/}js/nutritionix/nutritionLabel.js"
 
     javascript:
       $(document).on('ready', function() {

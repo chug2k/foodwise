@@ -1,0 +1,25 @@
+.nutrition-facts
+
+javascript:
+  $(document).on('ready', function() {
+    $('.nutrition-facts').nutritionLabel({
+      'itemName' : '#{@product.name}',
+      'showBrandName' : true,
+      'brandName': '#{@product.brand}',
+      'showServingUnitQuantityTextbox': false,
+      'valueCalories': #{@product.calories},
+      'valueFatCalories': #{@product.calories_from_fat},
+      'valueTotalFat': #{@product.total_fat},
+      'valueSatFat': #{@product.saturated_fat},
+      'valueTransFat': #{@product.trans_fat},
+      'valueCholesterol': #{@product.cholesterol},
+      'valueSodium': #{@product.sodium},
+      'valueTotalCarb': #{@product.total_carb},
+      'valueFibers': #{@product.dietary_fiber},
+      'valueSugars': #{@product.sugar},
+      'valueProteins': #{@product.protein},
+      'valueVitaminA': #{@product.vitamin_a},
+      'valueVitaminC': #{@product.vitamin_c},
+      'valueCalcium': #{@product.calcium}
+    });
+  });

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20141218023340) do
 
   create_table "products", force: true do |t|
     t.string   "name"
+    t.string   "brand"
     t.float    "grams_total"
     t.float    "serving_size"
     t.float    "grams_per_serving"
@@ -37,6 +38,9 @@ ActiveRecord::Schema.define(version: 20141218023340) do
     t.float    "calcium"
     t.float    "vitamin_d"
     t.float    "phosphorus"
+    t.string   "front_image_full_url"
+    t.string   "front_image_thumb_url"
+    t.string   "label_image_full_url"
     t.boolean  "kosher"
     t.boolean  "gluten_free"
     t.datetime "created_at"
