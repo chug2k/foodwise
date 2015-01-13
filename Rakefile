@@ -62,6 +62,9 @@ end
 
 task :import_nutritionix, [:id] do |t, args|
   def get_nutrient(res, name)
+    if name == 'Total Carbohydrate'
+      name = 'Total Carbohydate' # Error in their API.
+    end
     nutrients = res[:label][:nutrients]
     nutrient = nutrients.select{|x| x[:name] == name}.first
     nutrient.nil? ? 0.0 : nutrient[:value].try(:to_f) || 0.0

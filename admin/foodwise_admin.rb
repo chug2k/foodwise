@@ -92,6 +92,9 @@ module Foodwise
       res = @@api.product session[:user_token], params[:id]
       @product = OpenStruct.new(res.parsed_response)
 
+      @product1 = Product.where('id NOT IN (?)', @product.id).first
+      @product2 = Product.where('id NOT IN (?)', @product.id).last
+
       slim :product_alternatives
     end
 

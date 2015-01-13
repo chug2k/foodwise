@@ -1,3 +1,5 @@
+p Hover over the area to see alternatives.
+
 .nutrition-facts
 
 javascript:
@@ -6,6 +8,7 @@ javascript:
       'itemName' : '#{@product.name}',
       'showBrandName' : true,
       'brandName': '#{@product.brand}',
+      'showIngredients': false,
       'showServingUnitQuantityTextbox': false,
       'valueCalories': #{@product.calories},
       'valueFatCalories': #{@product.calories_from_fat},
@@ -22,4 +25,44 @@ javascript:
       'valueVitaminC': #{@product.vitamin_c},
       'valueCalcium': #{@product.calcium}
     });
+
+    // TODO(Charles): Massive clean up necessary here.
+
+    Tipped.create('.total-fat-line', function() {
+      var str = '';
+      return '<div style="font-weight: bold;"> Total Fat Comparison </div>' +
+        '<br/><a href="#{url '/product/' + @product1.id.to_s + '/alternatives'}">#{@product1.brand} #{@product1.name}</a>: #{@product1.total_fat}g' +
+        '<br/><a href="#{url '/product/' + @product2.id.to_s + '/alternatives'}"> #{@product2.brand} #{@product2.name}</a>: #{@product2.total_fat}g' +
+      '</ul>';
+    }, {position: 'right'});
+    Tipped.create('.cholesterol-line', function () {
+      var str = '';
+      return '<div style="font-weight: bold;"> Cholesterol Comparison </div>' +
+              '<br/><a href="#{url '/product/' + @product1.id.to_s + '/alternatives'}">#{@product1.brand} #{@product1.name}</a>: #{@product1.cholesterol}mg' +
+              '<br/><a href="#{url '/product/' + @product2.id.to_s + '/alternatives'}"> #{@product2.brand} #{@product2.name}</a>: #{@product2.cholesterol}mg' +
+              '</ul>';
+    }, {position: 'right'});
+    Tipped.create('.sodium-line', function () {
+      var str = '';
+      return '<div style="font-weight: bold;"> Sodium Comparison </div>' +
+              '<br/><a href="#{url '/product/' + @product1.id.to_s + '/alternatives'}">#{@product1.brand} #{@product1.name}</a>: #{@product1.sodium}mg' +
+              '<br/><a href="#{url '/product/' + @product2.id.to_s + '/alternatives'}"> #{@product2.brand} #{@product2.name}</a>: #{@product2.sodium}mg' +
+              '</ul>';
+    }, {position: 'right'});
+    Tipped.create('.total-carb-line', function () {
+      var str = '';
+      return '<div style="font-weight: bold;"> Total Carbohydrate Comparison </div>' +
+              '<br/><a href="#{url '/product/' + @product1.id.to_s + '/alternatives'}">#{@product1.brand} #{@product1.name}</a>: #{@product1.total_carb}g' +
+              '<br/><a href="#{url '/product/' + @product2.id.to_s + '/alternatives'}"> #{@product2.brand} #{@product2.name}</a>: #{@product2.total_carb}g' +
+              '</ul>';
+    }, {position: 'right'});
+
+    Tipped.create('.protein-line', function () {
+      var str = '';
+      return '<div style="font-weight: bold;"> ProteinComparison </div>' +
+              '<br/><a href="#{url '/product/' + @product1.id.to_s + '/alternatives'}">#{@product1.brand} #{@product1.name}</a>: #{@product1.protein}g' +
+              '<br/><a href="#{url '/product/' + @product2.id.to_s + '/alternatives'}"> #{@product2.brand} #{@product2.name}</a>: #{@product2.protein}g' +
+              '</ul>';
+    }, {position: 'right'});
+
   });

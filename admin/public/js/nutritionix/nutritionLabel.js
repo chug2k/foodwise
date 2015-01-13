@@ -1000,7 +1000,7 @@
 
 
       if ($this.settings.showTotalFat){
-        nutritionLabel += tab1 + '<div class="line">\n';
+        nutritionLabel += tab1 + '<div class="line total-fat-line">\n';
         nutritionLabel += tab2 + '<div class="dv">';
         nutritionLabel += $this.settings.naTotalFat ?
             naValue :
@@ -1105,7 +1105,7 @@
 
 
       if ($this.settings.showCholesterol){
-        nutritionLabel += tab1 + '<div class="line">\n';
+        nutritionLabel += tab1 + '<div class="line cholesterol-line">\n';
         nutritionLabel += tab2 + '<div class="dv">';
         nutritionLabel += $this.settings.naCholesterol ?
             naValue :
@@ -1135,7 +1135,7 @@
 
 
       if ($this.settings.showSodium){
-        nutritionLabel += tab1 + '<div class="line">\n';
+        nutritionLabel += tab1 + '<div class="line sodium-line">\n';
         nutritionLabel += tab2 + '<div class="dv">';
         nutritionLabel += $this.settings.naSodium ?
             naValue :
@@ -1165,7 +1165,7 @@
 
 
       if ($this.settings.showTotalCarb){
-        nutritionLabel += tab1 + '<div class="line">\n';
+        nutritionLabel += tab1 + '<div class="line total-carb-line">\n';
         nutritionLabel += tab2 + '<div class="dv">';
         nutritionLabel += $this.settings.naTotalCarb ?
             naValue :
@@ -1239,7 +1239,7 @@
 
 
       if ($this.settings.showProteins){
-        nutritionLabel += tab1 + '<div class="line">';
+        nutritionLabel += tab1 + '<div class="line protein-line">';
         nutritionLabel += '<b>' + $this.settings.textProteins + '</b> ';
         nutritionLabel += $this.settings.naProteins ?
             naValue :
