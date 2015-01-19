@@ -23,6 +23,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    creek (1.0.5)
+      nokogiri (~> 1.6.0)
+      rubyzip (>= 1.0.0)
     execjs (2.2.2)
     faker (1.4.3)
       i18n (~> 0.5)
@@ -32,9 +35,12 @@ GEM
     i18n (0.6.11)
     json (1.8.1)
     kgio (2.9.2)
+    mini_portile (0.6.2)
     minitest (5.5.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    nokogiri (1.6.5)
+      mini_portile (~> 0.6.0)
     pg (0.17.1)
     rack (1.5.2)
     rack-coffee (1.0.3)
@@ -54,6 +60,7 @@ GEM
       rack (>= 1.0)
       rack-test (~> 0.6.2)
       ripl (>= 0.7.0)
+    rubyzip (1.1.6)
     shotgun (0.9)
       rack (>= 1.0)
     sinatra (1.4.5)
@@ -100,6 +107,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   coffee-script
+  creek
   faker
   httparty
   pg

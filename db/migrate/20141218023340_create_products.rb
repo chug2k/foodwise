@@ -3,9 +3,9 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.string :name
       t.string :brand
+      t.references :category
       t.float :grams_total
-      t.float :serving_size
-      t.float :grams_per_serving
+      t.string :serving_size
       t.float :calories
       t.float :calories_from_fat
       t.float :total_fat

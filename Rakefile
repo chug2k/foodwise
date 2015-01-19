@@ -7,6 +7,7 @@ Bundler.require
 require './api/foodwise_api.rb'
 require './models/user.rb'
 require './models/product.rb'
+require './models/category.rb'
 require 'sinatra/activerecord/rake'
 
 require './lib/nutritionix_api.rb'
@@ -130,3 +131,58 @@ task :import_nutritionix, [:id] do |t, args|
   end
 
 end
+
+
+task :import_excel do |t, args|
+  def translate_category_name(excel_name)
+    return nil if excel_name.nil?
+    excel_name = excel_name.strip.downcase.
+        gsub('vit ', 'vitamin ').gsub('carbohydrates', 'carb').gsub('saturated', 'saturated fat').
+        gsub('brand type', 'name').
+        gsub(' ', '_').
+        underscore
+    if Foodwise::Product.column_names.include?(excel_name)
+      return excel_name
+    end
+    nil
+  end
+
+  def translate_value(val)
+    return nil if val.nil?
+    val.strip!
+    # "calories"=>"Calories 340", "calories_from_fat"=>"Calories from Fat 260", "total_fat"=>"Total Fat 29 g45%", "saturated_fat"=>"Saturated Fat 7 g34%", "trans_fat"=>"Trans Fat 0 g", "cholesterol"=>"Cholesterol 60 mg19%", "sodium"=>"Sodium 890 mg37%", "total_carb"=>"Total Carbohydrate 13 g4%", "dietary_fiber"=>"Dietary Fiber 0 g1%", "sugar"=>"Sugars † 10 g", "protein"=>"Protein 8 g", "vitamin_a"=>"Vitamin A2%", "vitamin_c"=>"Vitamin C2%", "calcium"=>"Calcium0%", "phosphorus"=>"Phosphorus—", "vitamin_d"=>"Vitamin D—"}
+    # Get the percentage-based values first.
+    pct_match = val.match(/((Calcium)|(Vitamin A)|(Vitamin C)|(Phosphorus)|(Vitamin D))(\d%|—)/)
+    if pct_match
+      return pct_match.to_a.last.gsub('%', '').to_f
+    end
+    val.gsub!(/\d+%/, '') # Forget about percentages now.
+    val.match(/\d+/).to_a.first.to_f
+  end
+
+  worksheet = Creek::Book.new 'data/yogurt-data.xlsx'
+  sheet = worksheet.sheets[0]
+  headers = {}
+  category = Foodwise::Category.where(name: sheet.name).first_or_create
+  sheet.rows.each_with_index do |row, i|
+    if i == 0
+      headers = row.values
+    else
+      prod_hash = {}
+      row.each_with_index do |val, idx|
+        category_name = translate_category_name(headers[idx])
+        next if category_name.nil?
+        if ['brand', 'name', 'serving_size'].include?(category_name)
+          prod_hash[category_name] = val.last.try(:strip)
+        else
+          prod_hash[category_name] = translate_value(val.last)
+        end
+      end
+      p = Foodwise::Product.new(prod_hash)
+      p.category = category
+      p.save!
+    end
+
+  end
+end
+
