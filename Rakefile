@@ -160,29 +160,52 @@ task :import_excel do |t, args|
     val.match(/\d+/).to_a.first.to_f
   end
 
+  puts 'Opening file...'
   worksheet = Creek::Book.new 'data/yogurt-data.xlsx'
-  sheet = worksheet.sheets[0]
-  headers = {}
-  category = Foodwise::Category.where(name: sheet.name).first_or_create
-  sheet.rows.each_with_index do |row, i|
-    if i == 0
-      headers = row.values
-    else
-      prod_hash = {}
-      row.each_with_index do |val, idx|
-        category_name = translate_category_name(headers[idx])
-        next if category_name.nil?
-        if ['brand', 'name', 'serving_size'].include?(category_name)
-          prod_hash[category_name] = val.last.try(:strip)
+  successful_count = 0
+  failed = []
+  skipped = []
+  sheets = [worksheet.sheets[0]]
+  sheets.each_with_index do |sheet, sheet_num|
+    headers = {}
+    category = Foodwise::Category.where(name: sheet.name).first_or_create
+    sheet.rows.each_with_index do |row, i|
+      if i == 0
+        headers = row.values
+      else
+        prod_hash = {}
+        row.each_with_index do |val, idx|
+          prod_hash[:row_idx] = i + 1 # TOOD(Charles): Oops, got confused with i and idx. Fix this perhaps.
+          category_name = translate_category_name(headers[idx])
+          next if category_name.nil?
+          if ['brand', 'name', 'serving_size'].include?(category_name)
+            prod_hash[category_name] = val.last.try(:strip)
+          else
+            prod_hash[category_name] = translate_value(val.last)
+          end
+        end
+        p = Foodwise::Product.new(prod_hash.except(:row_idx))
+        p.category = category
+        if p.save
+          print '.'
+          successful_count += 1
         else
-          prod_hash[category_name] = translate_value(val.last)
+          if p.errors.full_messages.first == 'Name has already been taken'
+            skipped << "#{sheet_num}: #{prod_hash[:row_idx]}"
+            print '.'
+          else
+            puts "Error: #{p.brand}: #{p.name}"
+            skipped << "#{sheet_num}: #{prod_hash[:row_idx]}"
+            print '!'
+          end
         end
       end
-      p = Foodwise::Product.new(prod_hash)
-      p.category = category
-      p.save!
-    end
 
+    end
   end
+  puts "\nSuccessfully added #{successful_count} products."
+  puts "Failed on #{failed.count} products: #{failed}"
+  puts "Skipped #{skipped.count} possibly duplicated products: #{skipped}"
+
 end
 
