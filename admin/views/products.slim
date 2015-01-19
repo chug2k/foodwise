@@ -12,8 +12,8 @@
       thead
         tr
           td.edit-button
-          td.first-name Product Name
           td.brand Brand
+          td.name Product Name
           td.email Alternatives
           td.blank
       tbody.list
@@ -22,8 +22,8 @@
             td.edit-button
               a href="#{url('product/' + product.id.to_s)}"
                 i.fa.fa-edit
-            td.name #{product.name}
-            td.brand #{product.brand}
+            td.brand #{product.brand.truncate(48)}
+            td.name #{product.name.truncate(32)}
             td.alternatives
               a.button-darkblue.smaller(href='#') Edit
               | &nbsp;
