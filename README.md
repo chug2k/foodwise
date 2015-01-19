@@ -31,6 +31,24 @@ To check out the admin frontend, go to `/admin`. Remember you probably want to l
 
 The app is set up to run on Heroku, using the unicorn webserver. It currently runs on `foodwise.herokuapp.com`. Environment variables should be correctly set; no special magic required here.
 
+## Populating Data
+
+The app is set up to populate from two sources: Nutritionix and local `.xlsx` files. I use the `creek` gem as it's a stream-based parser, and the input worksheets tend to be huge. There's the initial one checked in at `/data/yogurt-data.csv`, which has a lot more than yogurt in it. To import: 
+
+```
+rake import_excel
+```` 
+
+As of this writing, I only import the first sheet, because I haven't implemented pagination on the API just yet. 
+
+The import from Nutritionix, you use the `import_nutritionix` rake task. You have to manually pass in the Nutritionix ids, right now, but you can do it from the command line.
+
+```
+rake import_nutritionix[51c3ffe997c3e6dfa4df3270,51c3727297c3e69de4b0b60e,53f1f885d442da5d31289640]
+```
+
+Obviously in production, use `heroku run rake ...`. 
+
 ## More about the API
 
 Head to foodwise.apiary.io for more details!
