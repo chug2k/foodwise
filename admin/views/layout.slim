@@ -29,7 +29,7 @@ html
             a href="#{url :products}"  Products
           - @categories.each do |category|
             li.secondary
-              a href="#{url :products}"  #{category}
+              a href="#{url(:products) + '?category_id=' + category.id.to_s}"  #{category.name}
 
         p.foot
           a href="#{url :logout}"  Logout

@@ -17,7 +17,11 @@ module Foodwise
       def apply_pagination_format_response(relation)
         page = params[:page].to_i || 0
         results = relation.offset(DEFAULT_PER_PAGE * page).limit(DEFAULT_PER_PAGE)
-        total_count = results.first.class.send(:count)
+        if results.empty?
+          total_count = 0
+        else
+          total_count = results.first.class.send(:count)
+        end
         {
             page: page,
             per_page: DEFAULT_PER_PAGE,
@@ -68,6 +72,9 @@ module Foodwise
       if params[:query]
         relation = relation.where('name ILIKE :query', query: "%#{params[:query]}%")
       end
+      if params[:category_id]
+        relation = relation.where(category_id: params[:category_id])
+      end
       apply_pagination_format_response(relation)
     end
 
@@ -81,7 +88,7 @@ module Foodwise
     get '/categories' do
       content_type :json
 
-      Category.all.collect(&:name).to_json
+      Category.all.to_json
     end
 
 
