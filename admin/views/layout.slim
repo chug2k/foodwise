@@ -28,8 +28,13 @@ html
           li
             a href="#{url :products}"  Products
           - @categories.each do |category|
-            li.secondary
-              a href="#{url(:products) + '?category_id=' + category.id.to_s}"  #{category.name}
+            - if category.id == params[:category_id].to_i
+              li.secondary.active
+                a href="#{url(:products) + '?category_id=' + category.id.to_s}"  #{category.name}
+            - else
+              li.secondary
+                a href="#{url(:products) + '?category_id=' + category.id.to_s}"  #{category.name}
+
 
         p.foot
           a href="#{url :logout}"  Logout

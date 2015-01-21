@@ -16,12 +16,8 @@ module Foodwise
     helpers do
       def apply_pagination_format_response(relation)
         page = params[:page].to_i || 0
+        total_count = relation.count
         results = relation.offset(DEFAULT_PER_PAGE * page).limit(DEFAULT_PER_PAGE)
-        if results.empty?
-          total_count = 0
-        else
-          total_count = results.first.class.send(:count)
-        end
         {
             page: page,
             per_page: DEFAULT_PER_PAGE,
