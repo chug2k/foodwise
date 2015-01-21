@@ -72,7 +72,7 @@ module Foodwise
       if params[:query]
         relation = relation.where('name ILIKE :query', query: "%#{params[:query]}%")
       end
-      if params[:category_id]
+      if params[:category_id] && params[:category_id].to_i != 0
         relation = relation.where(category_id: params[:category_id])
       end
       apply_pagination_format_response(relation)
