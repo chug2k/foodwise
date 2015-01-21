@@ -14,13 +14,13 @@
 
     .flakes-pagination.left
       - if @page > 0
-        a href="#{url(:products) + '?page=' + (@page + 1).to_s}"
+        a href="#{url(:products) + '?page=' + (@page + 1).to_s + '&category_id=' + params[:category_id].to_s} "
           i.fa.fa-arrow-left &nbsp;
       | &nbsp;
-      input value="#{@page}"
+      | #{@page + 1} &nbsp;
       i of
       | &nbsp; #{@num_pages} &nbsp;
-      a href="#{url(:products) + '?page=' + (@page + 1).to_s}"
+      a href="#{url(:products) + '?page=' + (@page + 1).to_s + '&category_id=' + params[:category_id].to_s}"
         i.fa.fa-arrow-right
 
     table.flakes-table
