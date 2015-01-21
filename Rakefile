@@ -165,7 +165,7 @@ task :import_excel do |t, args|
   successful_count = 0
   failed = []
   skipped = []
-  sheets = [worksheet.sheets[0]]
+  sheets = worksheet.sheets
   sheets.each_with_index do |sheet, sheet_num|
     headers = {}
     category = Foodwise::Category.where(name: sheet.name).first_or_create
