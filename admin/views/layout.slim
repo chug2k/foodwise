@@ -24,9 +24,13 @@ html
           li
             a href="#{url :users}"  Users
           li
-            a href="#{url :products}"  Products
-          li
             a href="#{url 'product/new'}"  New Product
+          li
+            a href="#{url :products}"  Products
+          - @categories.each do |category|
+            li.secondary
+              a href="#{url :products}"  #{category}
+
         p.foot
           a href="#{url :logout}"  Logout
       .flakes-content

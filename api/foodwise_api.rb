@@ -78,6 +78,12 @@ module Foodwise
       Ingredient.all.to_json
     end
 
+    get '/categories' do
+      content_type :json
+
+      Category.all.collect(&:name).to_json
+    end
+
 
     ### Authentication ###
 

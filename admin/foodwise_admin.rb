@@ -31,6 +31,10 @@ module Foodwise
         self.class.post('/login', body: credentials.to_json, headers: {'Content-Type' => 'application/json'})
       end
 
+      def categories
+        self.class.get('/categories', headers: {'Content-Type' => 'application/json'})
+      end
+
     end
 
     @@api = ApiClient.new
@@ -47,6 +51,13 @@ module Foodwise
 
     def current_user_token
       session[:user_token]
+    end
+
+
+    @@categories = []
+    before do
+      @@categories = @@api.categories.parsed_response if @@categories.empty?
+      @categories = @@categories
     end
 
 
