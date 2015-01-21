@@ -17,7 +17,7 @@ gem 'rack-coffee'
 gem 'sinatra-flash'
 gem 'sinatra-contrib'
 
-# gem 'dullard'
+# For parsing excel files.
 gem 'creek'
 
 # Used for debugging, but also in production environments.

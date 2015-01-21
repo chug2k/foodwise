@@ -1,5 +1,9 @@
 .products-wrapper
-  h1 Products
+  h1
+    | Products
+    small
+      em &nbsp;(#{@total_count} total)
+
   #products-search
     form action="#{url :products}" method="GET"
       .flakes-search
@@ -8,12 +12,24 @@
         input.right.button-gray.smaller type="submit" value="Search"
         a.action.button-gray.smaller.right href="#{url 'product/new'}"  Add a product
 
+    .flakes-pagination.left
+      - if @page > 0
+        a href="#{url(:products) + '?page=' + (@page + 1).to_s}"
+          i.fa.fa-arrow-left &nbsp;
+      | &nbsp;
+      input value="#{@page}"
+      i of
+      | &nbsp; #{@num_pages} &nbsp;
+      a href="#{url(:products) + '?page=' + (@page + 1).to_s}"
+        i.fa.fa-arrow-right
+
     table.flakes-table
       thead
         tr
           td.edit-button
           td.brand Brand
           td.name Product Name
+          td.category Category
           td.email Alternatives
           td.blank
       tbody.list
@@ -22,8 +38,9 @@
             td.edit-button
               a href="#{url('product/' + product.id.to_s)}"
                 i.fa.fa-edit
-            td.brand #{product.brand.truncate(48)}
+            td.brand #{product.brand.truncate(32)}
             td.name #{product.name.truncate(32)}
+            td.category #{product.category_name}
             td.alternatives
               a.button-darkblue.smaller(href='#') Edit
               | &nbsp;

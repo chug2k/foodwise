@@ -2,6 +2,8 @@ module Foodwise
   class Api < Sinatra::Application
     register Sinatra::ActiveRecordExtension
 
+    DEFAULT_PER_PAGE = 20
+
     before do
       # Parse any JSON parameters.
       request.body.rewind
@@ -9,7 +11,21 @@ module Foodwise
       @request_payload = body.empty? ? {} : JSON.parse(body).symbolize_keys
 
       set_current_user
+    end
 
+    helpers do
+      def apply_pagination_format_response(relation)
+        page = params[:page].to_i || 0
+        results = relation.offset(DEFAULT_PER_PAGE * page).limit(DEFAULT_PER_PAGE)
+        total_count = results.first.class.send(:count)
+        {
+            page: page,
+            per_page: DEFAULT_PER_PAGE,
+            results: results.to_json,
+            total_count: total_count,
+            num_pages: total_count / DEFAULT_PER_PAGE
+        }.to_json
+      end
     end
 
     get '/' do
@@ -41,21 +57,18 @@ module Foodwise
 
     get '/product' do
       content_type :json
-
       Product.find(params[:id]).to_json
     end
-
-
 
     get '/products' do
       content_type :json
       halt 401 unless is_admin?
 
+      relation = Product.all.includes(:category)
       if params[:query]
-        Product.where('name ILIKE :query', query: "%#{params[:query]}%").to_json
-      else
-        Product.all.to_json
+        relation = relation.where('name ILIKE :query', query: "%#{params[:query]}%")
       end
+      apply_pagination_format_response(relation)
     end
 
 

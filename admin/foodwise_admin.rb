@@ -15,8 +15,8 @@ module Foodwise
         self.class.get('/users', query: {query: query}, headers: {'Foodwise-Token' => token})
       end
 
-      def products(token, query)
-        self.class.get('/products', query: {query: query}, headers: {'Foodwise-Token' => token})
+      def products(token, query, page)
+        self.class.get('/products', query: {query: query, page: page}, headers: {'Foodwise-Token' => token})
       end
 
       def product(token, id)
@@ -76,9 +76,11 @@ module Foodwise
 
     get '/products' do
       halt 401 unless logged_in?
-      res = @@api.products session[:user_token], params[:query]
-      @products = res.parsed_response.collect {|x| OpenStruct.new(x)}
-
+      res = @@api.products(session[:user_token], params[:query], params[:page]).parsed_response
+      @products = JSON.parse(res['results']).collect {|x| OpenStruct.new(x)}
+      @page = res['page'].to_i
+      @num_pages = res['num_pages']
+      @total_count = res['total_count']
       slim :products
     end
 
