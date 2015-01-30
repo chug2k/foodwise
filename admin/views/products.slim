@@ -42,9 +42,8 @@
             td.name #{product.name.truncate(32)}
             td.category #{product.category_name}
             td.alternatives
-              a.button-darkblue.smaller(href='#') Edit
-              | &nbsp;
-              a.button-red.smaller(href='#') Remove
+              a.button-red.smaller href="#{url('product/' + product.id.to_s + '/delete')}"
+                | Delete
               | &nbsp;
               a.button-pink.smaller href="#{url('product/' + product.id.to_s + '/alternatives')}"
                 | Alternatives

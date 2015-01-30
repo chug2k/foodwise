@@ -209,3 +209,8 @@ task :import_excel do |t, args|
 
 end
 
+
+task :delete_3000_rows do
+
+
+end

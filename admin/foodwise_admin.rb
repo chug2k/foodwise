@@ -23,11 +23,15 @@ module Foodwise
       end
 
       def product(token, id)
-        self.class.get('/product', query: {id: id}, headers: {'Foodwise-Token' => token})
+        self.class.get("/product/#{id}", headers: {'Foodwise-Token' => token})
       end
 
       def create_product(token, product_params)
         self.class.post('/product', body: product_params.to_json, headers: {'Foodwise-Token' => token})
+      end
+
+      def delete_product(token, product_id)
+        self.class.delete("/product/#{product_id}", headers: {'Content-Type' => 'application/json'})
       end
 
       def login(credentials)
@@ -118,6 +122,15 @@ module Foodwise
       @product2 = Product.where('id NOT IN (?)', @product.id).last
 
       slim :product_alternatives
+    end
+
+    get '/product/:id/delete' do
+      res = @@api.delete_product session[:user_token], params[:id]
+      p res
+      @product = OpenStruct.new(res.parsed_response)
+
+      flash[:info] = "#{@product.brand}: #{@product.name} successfully deleted."
+      redirect back
     end
 
     get '/product/:id' do |n|

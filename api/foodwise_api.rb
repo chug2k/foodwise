@@ -55,9 +55,14 @@ module Foodwise
       end
     end
 
-    get '/product' do
+    get '/product/:id' do
       content_type :json
       Product.find(params[:id]).to_json
+    end
+
+    delete '/product/:id' do
+      content_type :json
+      Product.find(params[:id]).destroy.to_json
     end
 
     get '/products' do
